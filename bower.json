@@ -17,6 +17,7 @@
   "dependencies": {
     "fullcalendar": "~2.4.0",
     "jquery": "~2.1.4",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "normalize-css": "normalize.css#~3.0.3"
   }
 }

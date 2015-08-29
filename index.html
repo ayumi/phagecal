@@ -1,19 +1,61 @@
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+  <link rel='stylesheet' href='bower_components/normalize-css/normalize.css' />
   <link rel='stylesheet' href='bower_components/fullcalendar/dist/fullcalendar.css' />
+  <link rel='stylesheet' href='pcal.css' />
+  <!-- <link rel='stylesheet' href='jquery-ui.theme.css' /> -->
   <script src='bower_components/jquery/dist/jquery.min.js'></script>
   <script src='bower_components/moment/min/moment.min.js'></script>
   <script src='bower_components/fullcalendar/dist/fullcalendar.js'></script>
   <script src='bower_components/fullcalendar/dist/gcal.js'></script>
 </head>
 <body>
+  <div id='test'></div>
   <div id='calendar'></div>
   <script>
-    $('#calendar').fullCalendar({
+    $calendar = $('#calendar');
+
+    // Callbacks
+    function eventClick(event, jsEvent, view) {
+      if (event.url) {
+        console.log('URL was: ' + event.url);
+        return false;
+      }
+    }
+
+    function windowResize(view) {
+      var targetView = defaultView();
+      if (view.name !== targetView) {
+        $calendar.fullCalendar('changeView', targetView);
+      }
+    }
+
+    // Util
+    // Based on device width
+    function defaultView() {
+      if (document.documentElement.clientWidth < 750) {
+        return 'agendaDay';
+      } else {
+        return 'agendaWeek';
+      }
+    }
+
+    // Init
+    $calendar.fullCalendar({
+      aspectRatio: 0,
+      businessHours: {
+        start: '12:00',
+        end: '24:00'
+      },
       googleCalendarApiKey: 'AIzaSyAyD4NUC6xWICgY7WkUJ5DXMmg09_8LEu8',
+      defaultView: defaultView(),
+      eventClick: eventClick,
       events: {
         googleCalendarId: 'ftk7rin1848hersg9virv4rjac@group.calendar.google.com'
-      }
+      },
+      timeFormat: 'h(:mm)t',
+      windowResize: windowResize
     });
   </script>
 </body>
