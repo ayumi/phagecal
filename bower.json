@@ -1,0 +1,22 @@
+{
+  "name": "pcal",
+  "version": "0.1.0",
+  "authors": [
+    "Ayumi Yu <ayumi@ayumiyu.com>"
+  ],
+  "description": "Phage calendar of events",
+  "license": "MIT",
+  "homepage": "thephage.org",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fullcalendar": "~2.4.0",
+    "jquery": "~2.1.4",
+    "moment": "~2.10.6"
+  }
+}

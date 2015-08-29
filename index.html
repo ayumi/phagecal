@@ -1,0 +1,20 @@
+<html>
+<head>
+  <link rel='stylesheet' href='bower_components/fullcalendar/dist/fullcalendar.css' />
+  <script src='bower_components/jquery/dist/jquery.min.js'></script>
+  <script src='bower_components/moment/min/moment.min.js'></script>
+  <script src='bower_components/fullcalendar/dist/fullcalendar.js'></script>
+  <script src='bower_components/fullcalendar/dist/gcal.js'></script>
+</head>
+<body>
+  <div id='calendar'></div>
+  <script>
+    $('#calendar').fullCalendar({
+      googleCalendarApiKey: 'AIzaSyAyD4NUC6xWICgY7WkUJ5DXMmg09_8LEu8',
+      events: {
+        googleCalendarId: 'ftk7rin1848hersg9virv4rjac@group.calendar.google.com'
+      }
+    });
+  </script>
+</body>
+</html>
