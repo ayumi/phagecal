@@ -1,0 +1,86 @@
+body {
+  height: 100%;
+}
+/*
+.table-wrap {
+  display: table;
+}
+
+.table-wrap .tr {
+  display: table-row;
+}*/
+
+#map {
+  background: #fff;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 9001;
+}
+
+.info {
+  border-bottom: 2px solid #a1a1a1;
+  border-top: 2px solid #a1a1a1;
+  line-height: 20px;
+  margin-top: 1px;
+  vertical-align: middle;
+}
+
+.info #day {
+  border-top: 2px solid #a1a1a1;
+  font-weight: bold;
+}
+
+.info > * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.info #event-title {
+  color: #003FFF;
+}
+
+.info #event-time {
+  color: green;
+  font-weight: bold;
+}
+
+.info #event-location {
+  color: green;
+}
+
+#calendar {
+  padding-top: 5px;
+}
+
+/* FC OVerride */
+
+.fc-day-header {
+  display: none !important;
+}
+
+.fc-toolbar {
+  margin-bottom: 5px;
+}
+
+.fc-next-button, .fc-prev-button {
+  padding: 0 30px !important;
+}
+
+/*#map + * > * {
+  margin-bottom: 0;
+  padding-top: 5px;
+}*/
+
+h2 {
+  font-size: 18px;
+}
+
+
+@media (max-width: 750px) {
+  html, body {
+    max-height: 100vh;
+  }
+}

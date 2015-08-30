@@ -12,18 +12,39 @@
 </head>
 <body>
   <div id='map'>
-    <img src='phage2015map.png' style='width: 100%;' />
+    <img src='phage2015map.png' style='min-height: 15vh; max-height: 33vh; max-width: 100%;' />
+    <!-- These change if you select events -->
+    <div class='info'>
+      <div id='event-title'>Phage Camp @ The Institute</div>
+      <div id='event-time-location'>
+        <span id='event-time'></span>
+        <span id='event-location'>5:15 &amp; Espl</span>
+      </div>
+      <div id='day'></div>
+    </div>
   </div>
   <div id='calendar'></div>
+
   <script>
     $calendar = $('#calendar');
+    $eventTitle = $('#event-title');
+    $eventTime = $('#event-time');
+    $eventLocation = $('#event-location');
+    $day = $('#day');
+    $map = $('#map');
 
     // Callbacks
     function eventClick(event, jsEvent, view) {
-      if (event.url) {
-        console.log('URL was: ' + event.url);
-        return false;
-      }
+      var shortTime = event.start.format("h:mmt");
+      $eventTitle.text(event.title);
+      $eventTime.text(shortTime);
+      $eventLocation.text('@ ' + event.location);
+      return false;
+    }
+
+    function viewRender(view, event) {
+      var dayStr = view.start.format("ddd M/D");
+      $day.text(dayStr);
     }
 
     function windowResize(view) {
@@ -43,21 +64,36 @@
       }
     }
 
-    // Init
-    $calendar.fullCalendar({
-      aspectRatio: 0,
-      businessHours: {
-        start: '12:00',
-        end: '24:00'
-      },
-      googleCalendarApiKey: 'AIzaSyAyD4NUC6xWICgY7WkUJ5DXMmg09_8LEu8',
-      defaultView: defaultView(),
-      eventClick: eventClick,
-      events: {
-        googleCalendarId: 'ftk7rin1848hersg9virv4rjac@group.calendar.google.com'
-      },
-      timeFormat: 'h(:mm)t',
-      windowResize: windowResize
+    $(document).ready(function() {
+      // Init
+      $calendar.fullCalendar({
+        allDaySlot: false,
+        aspectRatio: 0,
+        businessHours: {
+          start: '12:00',
+          end: '24:00'
+        },
+        defaultView: defaultView(),
+        eventClick: eventClick,
+        events: {
+          googleCalendarId: 'ftk7rin1848hersg9virv4rjac@group.calendar.google.com'
+        },
+        header: {
+          left: 'prev',
+          center: 'today',
+          right: 'next'
+        },
+        googleCalendarApiKey: 'AIzaSyAyD4NUC6xWICgY7WkUJ5DXMmg09_8LEu8',
+        timeFormat: 'h(:mm)t',
+        viewRender: viewRender,
+        windowResize: windowResize
+      });
+
+      // Image onload, shift calendar down
+      $('#map img')[0].onload = function() {
+        var mapHeight = $map.height();
+        $('#map + *').css('margin-top', mapHeight + 'px');
+      };
     });
   </script>
 </body>
